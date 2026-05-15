@@ -1,5 +1,5 @@
 # PSB-GNN
-The implementation of the paper "**Robust Graph Learning via Distilling Explainability and Dual-Channel Priors**". PSB-GNN is a defense framework that integrates Explainability-Guided Structural Edge Noise Injection (SENI) and Feature-Structure Fusion to achieve robust graph learning.
+The implementation of the paper "**Learning to Preserve Structural Backbones for Robust Graph Neural Networks**". PSB-GNN is a robust graph learning framework designed to explicitly learn and preserve structural backbones.
 
 ## Main Structure
 
