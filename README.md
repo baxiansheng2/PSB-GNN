@@ -1,11 +1,11 @@
-# DEDP-GNN
-The implementation of the paper "**Robust Graph Learning via Distilling Explainability and Dual-Channel Priors**". DEDP-GNN is a defense framework that integrates Explainability-Guided Structural Edge Noise Injection (SENI) and Feature-Structure Fusion to achieve robust graph learning.
+# PSB-GNN
+The implementation of the paper "**Robust Graph Learning via Distilling Explainability and Dual-Channel Priors**". PSB-GNN is a defense framework that integrates Explainability-Guided Structural Edge Noise Injection (SENI) and Feature-Structure Fusion to achieve robust graph learning.
 
 ## Main Structure
 
-- **models**: implementation of GNN models (DEDP-GNN and baselines)
+- **models**: implementation of GNN models (PSB-GNN and baselines)
 - **victims**: experiments for training
-  - `train.py`: script for training DEDP-GNN (Ours)
+  - `train.py`: script for training PSB-GNN (Ours)
   - `trainbaseline.py`: script for training baselines (GCN, RGCN, etc.) and Teacher models
   - `generate_gnnexplainer.py`: script for generating structural priors
 - **attackers**: implementation of attack methods
@@ -29,7 +29,7 @@ The implementation of the paper "**Robust Graph Learning via Distilling Explaina
 ## Running Step
 
 ### 0. Preparation (Generate Structural Priors)
-Before training DEDP-GNN, generate the edge importance mask using GNNExplainer.
+Before training PSB-GNN, generate the edge importance mask using GNNExplainer.
 ```
 > cd victims
 > python generate_gnnexplainer.py --dataset cora --teacher_path ./models/gcn-cora-teacher.pth --num_hidden 16 --sample_ratio 1.0 --device_id 0
@@ -43,7 +43,7 @@ Before training DEDP-GNN, generate the edge importance mask using GNNExplainer.
 > python trainbaseline.py --model gcn --dataset cora --num_hidden 16 --save_name gcn-cora-teacher --gpu_id 0
 ```
 
-**Option B: Training DEDP-GNN (Ours)**
+**Option B: Training PSB-GNN (Ours)**
 ```
 >cd victims
 >python trainbaseline.py --model gcn --dataset cora --num_hidden 16 --save_name gcn-cora-teacher --gpu_id 0  (train teacher model)
@@ -66,9 +66,9 @@ Generate perturbed adjacency matrix using attack methods (e.g., PGA) targeting t
 ```
 
 ### 3. Evaluation (Evasion Attack)
-Evaluate the robust accuracy using the generated adversarial graph. For DEDP-GNN, specific inference parameters (bias/threshold) are applied here.
+Evaluate the robust accuracy using the generated adversarial graph. For PSB-GNN, specific inference parameters (bias/threshold) are applied here.
 
-**Evaluate DEDP-GNN (with Inference Pruning):**
+**Evaluate PSB-GNN (with Inference Pruning):**
 ```
 > python evasion_attack.py --dataset cora --victim egnd --attack pga --ptb_rate 0.05 --bias 0.35 --threshold 0.15 --gpu_id 0
 ```
